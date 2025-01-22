@@ -1,7 +1,6 @@
 import { Icon } from '@patternfly/react-core/dist/dynamic/components/Icon';
 import { IconComponentProps } from '@patternfly/react-core/dist/dynamic/components/Icon';
 import { Tooltip } from '@patternfly/react-core/dist/dynamic/components/Tooltip';
-import QuestionIcon from '@patternfly/react-icons/dist/dynamic/icons/question-icon';
 import SecurityIcon from '@patternfly/react-icons/dist/dynamic/icons/security-icon';
 import { SVGIconProps } from '@patternfly/react-icons/dist/js/createIcon';
 import React from 'react';
@@ -22,7 +21,12 @@ const Shield: React.FunctionComponent<ShieldProps> = ({ impact = 'N/A', hasLabel
     color: attributes.color,
   };
 
-  const badge = <Icon size={size}>{attributes.title === 'Unknown' ? <QuestionIcon {...badgeProps} /> : <SecurityIcon {...badgeProps} />}</Icon>;
+  const badge =
+    attributes.title !== 'Unknown' ? (
+      <Icon size={size}>
+        <SecurityIcon {...badgeProps} />
+      </Icon>
+    ) : null;
 
   const body = (
     <span>
